@@ -28,6 +28,19 @@ function BotCollection() {
     const updatedArmy = army.filter((armyBot) => armyBot.id !== bot.id);
     setArmy(updatedArmy);
   }
+  function handleDeleteClick(bot) {
+    fetch(`http://localhost:8001/bots/${bot.id}`, {
+      method: "DELETE",
+    })
+      .then((r) => r.json())
+      .then(() => {console.log(bot)
+        const updatedArmy = army.filter((armyBot) => armyBot.id !== bot.id);
+        setArmy(updatedArmy);
+        
+
+    });
+  }
+  
 
   return (
     <>
@@ -35,6 +48,7 @@ function BotCollection() {
       <h1>Bot Collection</h1>
       <div className="bot-container">
         {bots.map((bot) => (
+            <div className="bot">
           <div key={bot.id} className="bot-frame" onClick={() => handleClick(bot)}>
             <img src={bot.avatar_url} alt="" />
             <p>{bot.name}</p>
@@ -44,7 +58,9 @@ function BotCollection() {
             <p>{bot.bot_class}</p>
             <p>{bot.catchphrase}</p>
             <p>{bot.created_at}</p>
-            <p>{bot.updated_at}</p>
+            <p>{bot.updated_at}</p>  
+          </div>
+          <button onClick={()=>handleDeleteClick(bot)}>X</button>
           </div>
         ))}
       </div>

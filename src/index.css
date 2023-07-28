@@ -11,3 +11,14 @@ img{
   display: flex;
   flex-wrap: wrap;
 }
+button{
+  background-color: red;
+  width: 50px;
+}
+.bot{
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color:lavender;
+}
