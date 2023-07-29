@@ -9,7 +9,7 @@ function BotCollection() {
   const [showArmy, setShowArmy] = useState(false); // New state variable
 
   useEffect(() => {
-    fetch('http://localhost:8001/bots')
+    fetch('https://api.npoint.io/e5115d936f381a580b81/bots')
       .then((r) => r.json())
       .then((data) => setBots(data));
   }, []);
@@ -33,15 +33,26 @@ function BotCollection() {
   }
   
   function handleDeleteClick(bot) {
-    fetch(`http://localhost:8001/bots/${bot.id}`, {
+    fetch(`https://api.npoint.io/e5115d936f381a580b81/bots/${bot.id}`, {
       method: "DELETE",
     })
-      .then((r) => r.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
+        }
+        return response.json();
+      })
       .then(() => {
         const updatedArmy = army.filter((armyBot) => armyBot.id !== bot.id);
         setArmy(updatedArmy);
-    });
+      })
+      .catch((error) => {
+        console.error("Error deleting bot:", error);
+        // Handle the error as needed, e.g., show an error message to the user
+      });
   }
+  
+  
 
   // Function to toggle the display of YourBotArmy
   function toggleArmyDisplay() {
@@ -62,7 +73,7 @@ function BotCollection() {
    
     if (bot_class === "" || bot_class === null) {
       //display all the transactions
-      fetch("http://localhost:8001/bots")
+      fetch("https://api.npoint.io/e5115d936f381a580b81/bots")
     .then((r) => r.json())
     .then((data) => {
       console.log("Fetched data:", data)
