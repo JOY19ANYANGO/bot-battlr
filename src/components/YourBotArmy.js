@@ -1,4 +1,5 @@
 import React from "react";
+
 function YourBotArmy({army,handleClickArmy}){
   
    
@@ -10,14 +11,14 @@ function YourBotArmy({army,handleClickArmy}){
    {army.map((armyBot)=>(
     <div key={armyBot.id} className="bot" onClick={()=>handleClickArmy(armyBot)} >
         <img src={armyBot.avatar_url} alt=""/>
-        <p>{armyBot.name}</p>
-        <p>{armyBot.health}</p>
-        <p>{armyBot.damage}</p>
-        <p>{armyBot.armor}</p>
-        <p>{armyBot.bot_class}</p>
-        <p>{armyBot.catchphrase}</p>
-        <p>{armyBot.created_at}</p>
-        <p>{armyBot.updated_at}</p>
+        <p>name:{armyBot.name}</p>
+        <p>Health:{armyBot.health}</p>
+        <p>damage:{armyBot.damage}</p>
+        <p>armor:{armyBot.armor}</p>
+        <p>Class:{armyBot.bot_class}</p>
+        <p>catchphrase:{armyBot.catchphrase}</p>
+        <p>created_at:{armyBot.created_at}</p>
+        <p>updated_at:{armyBot.updated_at}</p>
 
     </div>
 ))}
