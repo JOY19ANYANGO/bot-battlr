@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import YourBotArmy from "./YourBotArmy";
 import SortBar from "./SortBar";
 import Searchbar from "./Searchbar";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function BotCollection() {
   const [bots, setBots] = useState([]);
@@ -9,7 +12,7 @@ function BotCollection() {
   const [showArmy, setShowArmy] = useState(false); // New state variable
 
   useEffect(() => {
-    fetch('https://api.npoint.io/e5115d936f381a580b81/bots')
+    fetch('http://localhost:8001/bots')
       .then((r) => r.json())
       .then((data) => setBots(data));
   }, []);
@@ -21,8 +24,11 @@ function BotCollection() {
     if (!isBotInArmy && !isClassInArmy) {
       // If the bot is not in the army, add it to the army
       setArmy([...army, bot]);
+      // Show a success toast notification
+      toast.success("Bot added to your army!", { autoClose: 2000 });
     } else {
       console.log('Bot is already in army');
+      toast.warn("Bot is already in your army!", { autoClose: 2000 });
     }
   }
 
@@ -33,15 +39,10 @@ function BotCollection() {
   }
   
   function handleDeleteClick(bot) {
-    fetch(`https://api.npoint.io/e5115d936f381a580b81/bots/${bot.id}`, {
+    fetch(`http://localhost:8001/bots/${bot.id}`, {
       method: "DELETE",
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
-        }
-        return response.json();
-      })
+      .then((r) =>(r.json()))
       .then(() => {
         const updatedArmy = army.filter((armyBot) => armyBot.id !== bot.id);
         setArmy(updatedArmy);
