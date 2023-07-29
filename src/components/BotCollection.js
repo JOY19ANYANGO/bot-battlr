@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import YourBotArmy from "./YourBotArmy";
-import HeroSection from "./HeroSection";
 import SortBar from "./SortBar";
 
 function BotCollection() {
@@ -17,8 +16,8 @@ function BotCollection() {
   function handleClick(bot) {
     // Check if the bot is already in the army by comparing their ids
     const isBotInArmy = army.some((armyBot) => armyBot.id === bot.id);
-
-    if (!isBotInArmy) {
+     const isClassInArmy=army.some((armyBot)=>armyBot.bot_class===bot.bot_class)
+    if (!isBotInArmy && !isClassInArmy) {
       // If the bot is not in the army, add it to the army
       setArmy([...army, bot]);
     } else {
