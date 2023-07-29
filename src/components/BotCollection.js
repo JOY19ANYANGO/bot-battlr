@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import YourBotArmy from "./YourBotArmy";
 import HeroSection from "./HeroSection";
+import SortBar from "./SortBar";
 
 function BotCollection() {
   const [bots, setBots] = useState([]);
@@ -46,6 +47,16 @@ function BotCollection() {
   function toggleArmyDisplay() {
     setShowArmy(!showArmy);
   }
+  function handleSort(sortBy) {
+    // Create a copy of the bots array to avoid mutating the original state
+    const sortedBots = [...bots];
+
+    // Use the Array.sort() method to sort the bots based on the selected attribute
+    sortedBots.sort((botA, botB) => botB[sortBy] - botA[sortBy]);
+
+    // Update the state with the sorted bots
+    setBots(sortedBots);
+  }
 
   return (
     <>
@@ -54,6 +65,7 @@ function BotCollection() {
       </button>
       {showArmy && <YourBotArmy army={army} handleClickArmy={handleRemove} />}
       <h1>Bot Collection</h1>
+      <SortBar handleSort={handleSort} />
       <div className="bot-container">
         {bots.map((bot) => (
           <div key={bot.id} className="bot" onClick={() => handleClick(bot)}>
