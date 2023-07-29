@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import YourBotArmy from "./YourBotArmy";
+import HeroSection from "./HeroSection";
 
 function BotCollection() {
   const [bots, setBots] = useState([]);
   const [army, setArmy] = useState([]);
+  const [showArmy, setShowArmy] = useState(false); // New state variable
 
   useEffect(() => {
     fetch('http://localhost:8001/bots')
@@ -28,28 +30,33 @@ function BotCollection() {
     const updatedArmy = army.filter((armyBot) => armyBot.id !== bot.id);
     setArmy(updatedArmy);
   }
+  
   function handleDeleteClick(bot) {
     fetch(`http://localhost:8001/bots/${bot.id}`, {
       method: "DELETE",
     })
       .then((r) => r.json())
-      .then(() => {console.log(bot)
+      .then(() => {
         const updatedArmy = army.filter((armyBot) => armyBot.id !== bot.id);
         setArmy(updatedArmy);
-        
-
     });
   }
-  
+
+  // Function to toggle the display of YourBotArmy
+  function toggleArmyDisplay() {
+    setShowArmy(!showArmy);
+  }
 
   return (
     <>
-      <YourBotArmy army={army} handleClickArmy={handleRemove} />
+      <button onClick={toggleArmyDisplay} id="armybutton">
+        {showArmy ? "Hide Your Bot Army" : "View Your Bot Army"}
+      </button>
+      {showArmy && <YourBotArmy army={army} handleClickArmy={handleRemove} />}
       <h1>Bot Collection</h1>
       <div className="bot-container">
         {bots.map((bot) => (
-            <div className="bot">
-          <div key={bot.id} className="bot-frame" onClick={() => handleClick(bot)}>
+          <div key={bot.id} className="bot" onClick={() => handleClick(bot)}>
             <img src={bot.avatar_url} alt="" />
             <p>{bot.name}</p>
             <p>{bot.health}</p>
@@ -59,8 +66,7 @@ function BotCollection() {
             <p>{bot.catchphrase}</p>
             <p>{bot.created_at}</p>
             <p>{bot.updated_at}</p>  
-          </div>
-          <button onClick={()=>handleDeleteClick(bot)}>X</button>
+            <button onClick={() => handleDeleteClick(bot)}>X</button>
           </div>
         ))}
       </div>

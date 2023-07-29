@@ -8,7 +8,7 @@ function YourBotArmy({army,handleClickArmy}){
         <div className="bot-container">
 
    {army.map((armyBot)=>(
-    <div key={armyBot.id} className="bot-frame" onClick={()=>handleClickArmy(armyBot)} >
+    <div key={armyBot.id} className="bot" onClick={()=>handleClickArmy(armyBot)} >
         <img src={armyBot.avatar_url} alt=""/>
         <p>{armyBot.name}</p>
         <p>{armyBot.health}</p>
