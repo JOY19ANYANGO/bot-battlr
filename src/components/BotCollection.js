@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import YourBotArmy from "./YourBotArmy";
 import SortBar from "./SortBar";
+import Searchbar from "./Searchbar";
 
 function BotCollection() {
   const [bots, setBots] = useState([]);
@@ -56,6 +57,32 @@ function BotCollection() {
     // Update the state with the sorted bots
     setBots(sortedBots);
   }
+  //Filter bots based on the entered class
+  const handleSearch = (bot_class) => {
+   
+    if (bot_class === "" || bot_class === null) {
+      //display all the transactions
+      fetch("http://localhost:8001/bots")
+    .then((r) => r.json())
+    .then((data) => {
+      console.log("Fetched data:", data)
+    
+      setBots(data)
+
+     });
+    } 
+    else {
+      // Filter transactions based on the entered description
+      const filtered = bots.filter((bot) =>
+        bot.bot_class.toLowerCase().includes(bot_class.toLowerCase())
+      );
+     
+      setBots(filtered);
+      console.log(filtered)
+    }
+   
+ 
+};
 
   return (
     <>
@@ -64,6 +91,7 @@ function BotCollection() {
       </button>
       {showArmy && <YourBotArmy army={army} handleClickArmy={handleRemove} />}
       <h1>Bot Collection</h1>
+      <Searchbar onSearch={handleSearch}/>
       <SortBar handleSort={handleSort} />
       <div className="bot-container">
         {bots.map((bot) => (
