@@ -2,7 +2,7 @@ import React from "react";
 
 function BotSpecs({ bot, onEnlist, onGoBack }) {
   return (
-    <div className="bot">
+    <div className="bot" id="botspecs">
       <h2>{bot.name}</h2>
       <img src={bot.avatar_url} alt="" />
       <p>Health: {bot.health}</p>
