@@ -33,7 +33,7 @@ function BotCollection() {
     }
   }
 
-  // ... (other functions like handleRemove, handleDeleteClick, handleSort, handleSearch)
+ 
 
   // Function to show the detailed specifications of a bot
   function showBotSpecs(bot) {
