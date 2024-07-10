@@ -1,49 +1,15 @@
-# Bank-of-flatiron
+# Bot-Battlr
 This is a website that contains bots which can be recruited in the army
 
-## Table of contents.
-* Requirements.
-* Technologies used.
-* Installation.
-* Usage
-* License.
-
+<img src="bot.png" alt="landing page" title="landing page">
 ### Requirements.
 * Smartphone/computer.
 * stable network
 
 ## Technologies used.
-* React
-* Javascript
-* css
-* JSX
-* JSON
-## Installation
-* Git clone this repository into your local machine
-```bash
-$ git clone https://github.com/JOY19ANYANGO/bank-of-flatiron
-```
-* Navigate into this folder.
-```bash
-$ cd bank-of-flatiron
-```
-* Open in your vs code
-```bash
-$ code .
-```
-* To install dependencies run
-```bash
-$ npm install
-```
-* If you do not have json server installed run `npm install json-server.`to install it.
-* To run JSON server use
-```bash
-$ npm run server
-```
-* Leave json-server running. Open a new terminal, and run React with:
-```bash
-$ npm start
-```
+![React.js](https://img.shields.io/badge/react-v18.2.0-blue)
+
+
 
 ## Usage.
 * This website shows a collection of bots.
@@ -53,7 +19,9 @@ $ npm start
 * You can search bot class in the search bar
 * You can sort the bots by clicking sort buttons.
 
-## License.
-Author Joy Anyango
+## Authors & License
+
+Authored by :
+* [Joy Anyango](https://github.com/JOY19ANYANGO).
 
 [MIT](https://choosealicense.com/licenses/mit/)
