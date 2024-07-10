@@ -13,7 +13,7 @@ function BotCollection() {
   const [selectedBot, setSelectedBot] = useState(null); // New state variable to track the selected bot
 
   useEffect(() => {
-    fetch('http://localhost:8001/bots')
+    fetch('https://api.npoint.io/e5115d936f381a580b81/bots')
       .then((r) => r.json())
       .then((data) => setBots(data));
   }, []);
