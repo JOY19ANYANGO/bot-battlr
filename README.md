@@ -2,7 +2,8 @@
 This is a website that contains bots which can be recruited in the army
 
 <img src="bot.png" alt="landing page" title="landing page">
-### Requirements.
+
+## Requirements.
 * Smartphone/computer.
 * stable network
 
