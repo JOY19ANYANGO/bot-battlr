@@ -51,17 +51,10 @@ function BotCollection() {
   }
 
   function handleDeleteClick(bot) {
-    fetch(`http://localhost:8001/bots/${bot.id}`, {
-      method: "DELETE",
-    })
-      .then((r) => r.json())
-      .then(() => {
-        const updatedArmy = army.filter((armyBot) => armyBot.id !== bot.id);
-        setArmy(updatedArmy);
-      })
-      .catch((error) => {
-        console.error("Error deleting bot:", error);
-      });
+      
+        const updatedBots= bots.filter((armyBot) => armyBot.id !== bot.id);
+        setBots(updatedBots);
+        toast.warn("Bot deleted!", { autoClose: 2000 });
   }
 
   function toggleArmyDisplay() {
